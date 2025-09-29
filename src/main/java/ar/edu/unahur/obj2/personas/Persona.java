@@ -12,10 +12,19 @@ public class Persona {
     private Boolean leGustaMusicaTradicional;
     private Double nivelDeAguante;
     private List<Marca> marcasQueLeGustan = new ArrayList<>();
-    
+    private static String nacionalidad;
+
 
     public Boolean estaEbrio() {
         return jarrasTomadas.stream().mapToDouble(j -> j.getCapacidad()).sum() * peso > nivelDeAguante;
     }
+
+    public Boolean leGustaEstaCerveza(Marca marca){
+           return switch (nacionalidad){
+            case "Bélgica" -> marca.getLupulo() > 4;
+            case "República Checa" -> marca.graduacion() > 8;
+            default -> Boolean.TRUE; //aleman le gustan todas al igual que cualquier otro
+        };
+    } 
 
 }
